@@ -25,21 +25,31 @@ public class PostgreSQLJDBC {
             sql = "CREATE SCHEMA IF NOT EXISTS COSTS ";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE IF NOT EXISTS COSTDATA "
+
+            sql = "CREATE TABLE IF NOT EXISTS COSTS.COSTDATA "
                     + " ( "
                     + " ID                   SERIAL PRIMARY KEY     NOT NULL, "
                     + " NAME                  VARCHAR(32)            NOT NULL "
                     + " ) ";
             stmt.executeUpdate(sql);
 
-
-            sql = "CREATE TABLE IF NOT EXISTS COSTDATALIST "
+            sql = "CREATE TABLE IF NOT EXISTS COSTS.COSTDATALIST "
                     + " ( "
-                    + " ID2                  INT       NOT NULL,"
-                    + " DATE                INT                  NOT NULL,"
-                    + " ID                  INT            NOT NULL,"
+                    + " ID                  SERIAL PRIMARY KEY       NOT NULL,"
+                    + " DATE                INT                 NOT NULL,"
+                    + " ID_COSTDATA         INT                NOT NULL,"
                     + " MONEY               INT                  NOT NULL)";
             stmt.executeUpdate(sql);
+
+
+
+
+            sql = "ALTER TABLE COSTS.COSTDATALIST "
+                    + " ADD CONSTRAINT FK_COSTDATA "
+                    + " FOREIGN KEY (ID_COSTDATA) REFERENCES COSTDATA (ID) MATCH FULL "
+                    + " ";
+            stmt.executeUpdate(sql);
+
 
             stmt.close();
             c.close();
