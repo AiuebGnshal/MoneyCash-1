@@ -40,9 +40,7 @@ public class CostdataList {
     }
 
     @Column(name = "DATE", nullable = false, unique = false)
-    public int getDate() {
-        return date;
-    }
+    public int getDate() {return date;}
 
     public void setDate(int date) {
         this.date = date;

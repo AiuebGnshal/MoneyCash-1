@@ -2,6 +2,7 @@ package dao;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.naming.Name;
 import javax.persistence.*;
 import java.util.Set;
 
@@ -34,6 +35,7 @@ public class Costdata {
 
     @Column(name = "NAME", nullable = false, unique = true)
 
+    public String getName () {return name;}
     public void setName(String name) {
         this.name = name;
     }
